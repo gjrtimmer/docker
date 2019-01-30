@@ -13,5 +13,7 @@ LABEL \
 	org.label-schema.vcs-ref=${VCS_REF} \
 	nl.timmertech.license=MIT
 
-RUN apk add --no-cache --update py-pip && \
+RUN apk upgrade --update && \
+    apk add --no-cache --update py-pip curl && \
+    pip install --upgrade pip && \
     pip install docker-compose
