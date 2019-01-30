@@ -1,0 +1,32 @@
+stages:
+  - build
+
+.docker-login: &docker-login
+  before_script:
+    - echo ${CI_JOB_TOKEN} | docker login -u gitlab-ci-token --password-stdin ${CI_REGISTRY}
+
+.docker-build: &docker-build
+  script:
+    - docker build --pull --force-rm=true --squash 
+        --build-arg VCS_REF=`git rev-parse --short HEAD` 
+        --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` 
+        --tag=${DOCKER_IMAGE} .
+    - docker push ${DOCKER_IMAGE}
+
+docker:latest:
+  stage: build
+  only: 
+    - master
+  variables:
+    DOCKER_IMAGE: ${CI_REGISTRY}/${CI_PROJECT_PATH}
+  <<: *docker-login
+  <<: *docker-build
+
+docker:release:
+  stage: build
+  only:
+    - tags
+  variables:
+    DOCKER_IMAGE: ${CI_REGISTRY}/${CI_PROJECT_PATH}:${CI_BUILD_REF_NAME}
+  <<: *docker-login
+  <<: *docker-build
