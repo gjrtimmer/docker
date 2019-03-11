@@ -14,6 +14,6 @@ LABEL \
 	nl.timmertech.license=MIT
 
 RUN apk upgrade --update && \
-    apk add --no-cache --update py-pip curl pcre-tools && \
+    apk add --no-cache --update build-base py-pip curl pcre-tools && \
     pip install --upgrade pip && \
     pip install docker-compose
