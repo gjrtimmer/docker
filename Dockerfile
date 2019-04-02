@@ -20,7 +20,7 @@ RUN apk upgrade --update && \
 	build-base \
 	python3-dev && \
     apk add --no-cache --update \
-	curl
+	curl \
 	pcre-tools \
 	python3 \
     py3-pip && \
