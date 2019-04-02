@@ -14,6 +14,18 @@ LABEL \
 	nl.timmertech.license=MIT
 
 RUN apk upgrade --update && \
-    apk add --no-cache --update build-base py-pip curl pcre-tools && \
+	apk add --no-cache --update --virtual libs \
+	libffi-dev \
+	openssl-dev \
+	build-base \
+	python3-dev && \
+    apk add --no-cache --update \
+	curl
+	pcre-tools \
+	python3 \
+    py3-pip && \
+	if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
+    if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     pip install --upgrade pip && \
-    pip install docker-compose
+    pip install docker-compose && \
+	apk del libs
