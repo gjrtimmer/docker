@@ -17,11 +17,11 @@ RUN apk upgrade --update && \
 	apk add --no-cache --update --virtual libs \
 	libffi-dev \
 	openssl-dev \
-	build-base \
-	git-lfs \
 	python3-dev && \
 	apk add --no-cache --update \
 	curl \
+	build-base \
+	git-lfs \
 	pcre-tools \
 	python3 \
 	py3-pip && \
@@ -30,5 +30,3 @@ RUN apk upgrade --update && \
 	pip install --upgrade pip && \
 	pip install docker-compose && \
 	apk del libs
-
-RUN apk add --no-cache --update build-base git-lfs
