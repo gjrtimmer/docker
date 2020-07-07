@@ -18,6 +18,7 @@ RUN apk upgrade --update && \
 	libffi-dev \
 	openssl-dev \
 	build-base \
+	git-lfs \
 	python3-dev && \
 	apk add --no-cache --update \
 	curl \
