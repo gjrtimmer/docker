@@ -1,4 +1,4 @@
-FROM docker:18-git
+FROM docker:18.09.8-git
 ARG VCS_REF
 ARG BUILD_DATE
 
