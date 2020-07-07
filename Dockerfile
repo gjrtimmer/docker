@@ -30,3 +30,5 @@ RUN apk upgrade --update && \
 	pip install --upgrade pip && \
 	pip install docker-compose && \
 	apk del libs
+
+RUN apk add --no-cache --update build-base git-lfs
