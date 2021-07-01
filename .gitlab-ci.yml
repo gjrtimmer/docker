@@ -19,14 +19,17 @@ variables:
   variables:
     DOCKER_FILE: Dockerfile
     DOCKER_IMAGE: ${CI_REGISTRY}/${CI_PROJECT_PATH}:latest
+    DOCKER_IMAGE_FROM: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:git
   before_script:
-    - echo ${CI_JOB_TOKEN} | docker login -u gitlab-ci-token --password-stdin ${CI_REGISTRY}
+    - echo "${CI_DEPENDENCY_PROXY_PASSWORD}" | docker login -u "${CI_DEPENDENCY_PROXY_USER}" --password-stdin "${CI_DEPENDENCY_PROXY_SERVER}"
+    - echo "${CI_JOB_TOKEN}" | docker login -u gitlab-ci-token --password-stdin "${CI_REGISTRY}"
   script:
     - docker build --pull
         --build-arg VCS_REF="${CI_COMMIT_SHORT_SHA}"
         --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
         --build-arg CI_PROJECT_NAME=${CI_PROJECT_NAME}
         --build-arg CI_PROJECT_URL="${CI_PROJECT_URL}"
+        --build-arg DOCKER_IMAGE_FROM=${DOCKER_IMAGE_FROM}
         --build-arg DOCKER_IMAGE=${DOCKER_IMAGE}
         --file=${DOCKER_FILE}
         --tag=${DOCKER_IMAGE} .

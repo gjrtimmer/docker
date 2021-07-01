@@ -7,6 +7,7 @@ docker build \
 		--build-arg VCS_REF="$(git rev-parse --short HEAD)" \
 		--build-arg CI_PROJECT_NAME="${CI_PROJECT_NAME}" \
         --build-arg CI_PROJECT_URL="${CI_PROJECT_URL}" \
+		--build-arg DOCKER_IMAGE_FROM="${DOCKER_IMAGE_FROM}" \
 		--build-arg DOCKER_IMAGE="${IMAGE_NAME}" \
 		-t "${IMAGE_NAME}" .
 
