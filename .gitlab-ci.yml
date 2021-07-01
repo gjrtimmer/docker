@@ -14,7 +14,7 @@ variables:
 ################################################################################
 # Job Configuration
 ################################################################################
-:Auto:
+Update:
   stage: build
   only:
     - master
@@ -40,7 +40,7 @@ variables:
     - docker push ${DOCKER_IMAGE}
 
 
-:Docker Hub:
+docker.hub:
   stage: trigger
   only:
     - schedules
