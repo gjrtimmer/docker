@@ -1,4 +1,4 @@
-FROM docker:18.09.8-git
+FROM docker:git
 ARG VCS_REF
 ARG BUILD_DATE
 
@@ -13,20 +13,13 @@ LABEL \
 	org.label-schema.vcs-ref=${VCS_REF} \
 	nl.timmertech.license=MIT
 
-RUN apk upgrade --update && \
-	apk add --no-cache --update --virtual libs \
-	libffi-dev \
-	openssl-dev \
-	python3-dev && \
-	apk add --no-cache --update \
+RUN apk add --no-cache --update \
 	curl \
 	build-base \
+	bash \
+	wget \
 	git-lfs \
 	pcre-tools \
-	python3 \
-	py3-pip && \
-	if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
-	if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
-	pip install --upgrade pip && \
-	pip install docker-compose && \
-	apk del libs
+	docker-compose
+
+# EOF
