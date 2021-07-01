@@ -33,4 +33,13 @@ variables:
   after_script:
     - docker push ${DOCKER_IMAGE}
 
+
+:Docker Hub:
+  stage: trigger
+  only:
+    - schedules
+  script:
+    - curl -s -H -X POST ${DOCKERHUB_TRIGGER} > /dev/null
+
+
 # EOF
