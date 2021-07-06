@@ -16,6 +16,7 @@ variables:
 ################################################################################
 update:
   stage: build
+  interruptible: true
   only:
     - master
     - schedules
