@@ -1,5 +1,15 @@
-ARG DOCKER_IMAGE_FROM
-FROM ${DOCKER_IMAGE_FROM}
+ARG DOCKER_PROXY
+FROM ${DOCKER_PROXY}/docker:20.10.3-git
+
+RUN apk add --no-cache --update \
+    build-base \
+    bash \
+    findutils \
+    pcre-tools \
+    docker-compose \
+    git-lfs \
+    curl \
+    wget
 
 ARG BUILD_DATE
 ARG CI_PROJECT_NAME
@@ -17,15 +27,5 @@ LABEL \
     org.label-schema.vcs-ref=${VCS_REF} \
     org.label-schema.docker.image="${DOCKER_IMAGE}" \
     org.label-schema.license=MIT
-
-RUN apk add --no-cache --update \
-		build-base \
-		bash \
-		findutils \
-		pcre-tools \
-		docker-compose \
-		git-lfs \
-		curl \
-		wget
 
 # EOF
