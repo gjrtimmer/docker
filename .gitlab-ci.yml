@@ -35,7 +35,7 @@ dockerhub:
   stage: deploy
   extends: .dockerhub
   variables:
-    DOCKER_IMAGE_HUB: ${DOCKERHUB_REGISTRY}/${DOCKERHUB_NAMESPACE}/${CI_PROJECT_NAME}:latest
+    DOCKERHUB_IMAGE: ${DOCKERHUB_REGISTRY}/${DOCKERHUB_NAMESPACE}/${CI_PROJECT_NAME}:latest
   only:
     - master
     - schedules
