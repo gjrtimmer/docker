@@ -17,7 +17,7 @@ build:
   stage: build
   interruptible: true
   only:
-    - master
+    - main
     - schedules
   script:
     - docker build --pull
@@ -37,5 +37,5 @@ dockerhub:
   variables:
     DOCKERHUB_IMAGE: ${DOCKERHUB_REGISTRY}/${DOCKERHUB_NAMESPACE}/${CI_PROJECT_NAME}:latest
   only:
-    - master
+    - main
     - schedules
