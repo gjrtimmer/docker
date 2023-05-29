@@ -2,7 +2,7 @@ image: ${CI_REGISTRY}/${CI_PROJECT_PATH}:latest
 
 stages:
   - build
-  - trigger
+  - deploy
 
 include:
   - project: templates/ci
