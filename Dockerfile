@@ -10,7 +10,8 @@ RUN apk add --no-cache --update \
     git-lfs \
     curl \
     wget \
-    coreutils
+    coreutils \
+    tar
 
 ARG BUILD_DATE
 ARG CI_PROJECT_NAME
