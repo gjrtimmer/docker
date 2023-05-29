@@ -9,7 +9,8 @@ RUN apk add --no-cache --update \
     docker-compose \
     git-lfs \
     curl \
-    wget
+    wget \
+    coreutils
 
 ARG BUILD_DATE
 ARG CI_PROJECT_NAME
