@@ -6,9 +6,7 @@ include:
   - project: templates/ci
     file: docker.yml
   - project: templates/ci
-    file: docker-auth.yml
-  - project: templates/ci
-    file: docker-auth-hub.yml
+    file: docker-hub.yml
   - project: templates/ci
     file: docker-multi-arch.yml
 
@@ -20,7 +18,9 @@ build:
 
 dockerhub:
   stage: deploy
-  extends: .docker-multi-arch-build
+  extends:
+    - .docker-multi-arch-build
+    - .dockerhub-auth
   variables:
     DOCKER_IMAGE: ${DOCKERHUB_REGISTRY}/${DOCKERHUB_NAMESPACE}/${CI_PROJECT_NAME}:latest
   only:
