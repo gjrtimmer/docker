@@ -6,6 +6,7 @@ include:
   - project: templates/ci
     file:
       - docker.yml
+      - docker-auth.yml
       - docker-hub.yml
       - docker-multi-arch.yml
 
