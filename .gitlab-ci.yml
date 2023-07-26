@@ -9,14 +9,20 @@ include:
       - docker-hub.yml
       - docker-multi-arch.yml
 
+default:
+  before_script:
+    - mkdir -p $HOME/.docker
+    - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - echo $DOCKER_PROXY_PASS | docker login -u $DOCKER_PROXY_USER --password-stdin $DOCKER_PROXY_HOST
+
 build:
   extends: .docker-multi-arch-build
 
 dockerhub:
   stage: deploy
-  extends:
-    - .docker-multi-arch-build
-    - .dockerhub-auth
+  extends: .docker-multi-arch-build
+    - echo "${DOCKERHUB_PASS}" | docker login -u ${DOCKERHUB_USER} --password-stdin ${DOCKERHUB_REGISTRY}
   variables:
     DOCKER_IMAGE: ${DOCKERHUB_REGISTRY}/${DOCKERHUB_NAMESPACE}/${CI_PROJECT_NAME}:latest
   only:
