@@ -22,6 +22,7 @@ build:
 dockerhub:
   stage: deploy
   extends: .docker-multi-arch-build
+  before_script:
     - echo "${DOCKERHUB_PASS}" | docker login -u ${DOCKERHUB_USER} --password-stdin ${DOCKERHUB_REGISTRY}
   variables:
     DOCKER_IMAGE: ${DOCKERHUB_REGISTRY}/${DOCKERHUB_NAMESPACE}/${CI_PROJECT_NAME}:latest
