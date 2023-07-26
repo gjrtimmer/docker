@@ -4,24 +4,14 @@ stages:
 
 include:
   - project: templates/ci
-    file:
-      - docker.yml
-      - docker-multi-arch.yml
+    file: docker-multi-arch.yml
 
 build:
   extends: .docker-multi-arch-build
-  before_script:
-    - !reference [.docker-auth-init, login]
-    - !reference [.docker-login-registry, login]
-    - !reference [.docker-login-proxy, login]
 
 dockerhub:
   stage: deploy
   extends: .docker-multi-arch-build
-  before_script:
-    - !reference [.docker-auth-init, login]
-    - !reference [.docker-login-proxy, login]
-    - !reference [.docker-login-hub, login]
   variables:
     DOCKER_IMAGE: ${DOCKERHUB_REGISTRY}/${DOCKERHUB_NAMESPACE}/${CI_PROJECT_NAME}:latest
   only:
