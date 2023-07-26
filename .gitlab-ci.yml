@@ -4,9 +4,10 @@ stages:
 
 include:
   - project: templates/ci
-    file: docker.yml
-    file: docker-hub.yml
-    file: docker-multi-arch.yml
+    file:
+      - docker.yml
+      - docker-hub.yml
+      - docker-multi-arch.yml
 
 build:
   extends: .docker-multi-arch-build
