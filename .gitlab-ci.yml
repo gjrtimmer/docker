@@ -5,14 +5,9 @@ stages:
 include:
   - project: templates/ci
     file: docker.yml
-  - project: templates/ci
     file: docker-hub.yml
-  - project: templates/ci
     file: docker-multi-arch.yml
 
-################################################################################
-# Job Configuration
-################################################################################
 build:
   extends: .docker-multi-arch-build
 
