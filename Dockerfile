@@ -1,12 +1,10 @@
-ARG DOCKER_PROXY
-FROM ${DOCKER_PROXY}/docker:20.10.3-git
+FROM docker:24.0.2-git
 
 RUN apk add --no-cache --update \
     build-base \
     bash \
     findutils \
     pcre-tools \
-    docker-compose \
     git-lfs \
     curl \
     wget \
