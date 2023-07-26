@@ -1,6 +1,6 @@
 stages:
   - build
-  - deploy
+  - dockerhub
 
 include:
   - project: templates/ci
@@ -10,7 +10,7 @@ build:
   extends: .docker-multi-arch-build
 
 dockerhub:
-  stage: deploy
+  stage: dockerhub
   extends: .docker-multi-arch-build
   variables:
     DOCKER_IMAGE: ${DOCKERHUB_REGISTRY}/${DOCKERHUB_NAMESPACE}/${CI_PROJECT_NAME}:latest
