@@ -3,6 +3,7 @@ default:
 
 stages:
   - build
+  - multi
   - dockerhub
   - trigger
 
@@ -10,13 +11,17 @@ include:
   - project: templates/ci
     file: docker.yml
 
-.build:
+amd64:
+  extends: .docker-build-amd64
+
+arm64:
+  extends: .docker-build-arm64
+
+multi:
   extends: .docker-build-multi
+  stage: multi
   variables:
     PLATFORM: "linux/arm64,linux/amd64"
-
-build:
-  extends: .build
 
 dockerhub:
   stage: dockerhub
