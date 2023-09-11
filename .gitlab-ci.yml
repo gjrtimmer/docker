@@ -11,6 +11,11 @@ include:
   - project: templates/ci
     file: docker.yml
 
+.build:
+  extends: .docker-build-multi
+  variables:
+    PLATFORM: "linux/arm64,linux/amd64"
+
 amd64:
   extends: .docker-build-amd64
 
