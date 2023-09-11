@@ -24,8 +24,8 @@ multi:
     PLATFORM: "linux/arm64,linux/amd64"
 
 dockerhub:
-  stage: dockerhub
   extends: .docker-build-multi
+  stage: dockerhub
   variables:
     PLATFORM: "linux/arm64,linux/amd64"
     DOCKER_HUB: "ENABLED"
