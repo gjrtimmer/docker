@@ -1,19 +1,26 @@
+default:
+  image: registry.timmertech.nl/docker/docker:latest
+
 stages:
   - build
   - dockerhub
+  - trigger
 
 include:
   - project: templates/ci
-    file: docker-multi-arch.yml
+    file: docker.yml
+
+.build:
+  extends: .docker-build-multi
+  variables:
+    PLATFORM: "linux/arm64,linux/amd64"
 
 build:
-  extends: .docker-multi-arch-build
+  extends: .build
 
 dockerhub:
   stage: dockerhub
-  extends: .docker-multi-arch-build
+  extends: .build
   variables:
-    DOCKER_IMAGE: ${DOCKERHUB_REGISTRY}/${DOCKERHUB_NAMESPACE}/${CI_PROJECT_NAME}:latest
-  only:
-    - main
-    - schedules
+    DOCKER_HUB: "ENABLED"
+    DOCKER_IMAGE: ${DOCKER_IMAGE_HUB}
