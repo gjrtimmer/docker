@@ -4,8 +4,6 @@ default:
 stages:
   - build
   - multi
-  - dockerhub
-  - trigger
 
 include:
   - project: templates/ci
@@ -13,20 +11,23 @@ include:
 
 amd64:
   extends: .docker-build-amd64
+  variables:
+    DOCKER_HUB: "ENABLED"
+    DOCKER_TAGS: >-
+      --tag=${DOCKER_IMAGE_HUB_PATH}:amd64
 
 arm64:
   extends: .docker-build-arm64
+  variables:
+    DOCKER_HUB: "ENABLED"
+    DOCKER_TAGS: >-
+      --tag=${DOCKER_IMAGE_HUB_PATH}:arm64
 
 multi:
   extends: .docker-build-multi
   stage: multi
   variables:
     PLATFORM: "linux/arm64,linux/amd64"
-
-dockerhub:
-  extends: .docker-build-multi
-  stage: dockerhub
-  variables:
-    PLATFORM: "linux/arm64,linux/amd64"
     DOCKER_HUB: "ENABLED"
-    DOCKER_IMAGE: ${DOCKER_IMAGE_HUB}
+    DOCKER_TAGS: >-
+      --tag=${DOCKER_IMAGE_HUB_PATH}:latest
