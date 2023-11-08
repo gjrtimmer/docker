@@ -1,5 +1,8 @@
 default:
-  image: gjrtimmer/docker:latest
+  image: 
+    name: gjrtimmer/docker:latest
+    pull_policy: always
+  interruptible: false
 
 stages:
   - build
@@ -11,6 +14,7 @@ include:
 
 amd64:
   extends: .docker-build-amd64
+  interruptible: false
   variables:
     DOCKER_HUB: "ENABLED"
     DOCKER_TAGS: >-
@@ -18,6 +22,7 @@ amd64:
 
 arm64:
   extends: .docker-build-arm64
+  interruptible: false
   variables:
     DOCKER_HUB: "ENABLED"
     DOCKER_TAGS: >-
@@ -25,6 +30,7 @@ arm64:
 
 multi:
   extends: .docker-build-multi
+  interruptible: false
   stage: multi
   variables:
     PLATFORM: "linux/arm64,linux/amd64"
