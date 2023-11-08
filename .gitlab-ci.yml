@@ -1,5 +1,5 @@
 default:
-  image: registry.timmertech.nl/docker/docker:latest
+  image: gjrtimmer/docker:latest
 
 stages:
   - build
