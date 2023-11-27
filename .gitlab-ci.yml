@@ -17,6 +17,8 @@ amd64:
   interruptible: false
   variables:
     DOCKER_HUB: "ENABLED"
+    DOCKER_ARGS: >-
+      --cache-from=type=registry,ref=${DOCKER_IMAGE}
     DOCKER_TAGS: >-
       --tag=${DOCKER_IMAGE_HUB_PATH}:amd64
 
@@ -25,6 +27,8 @@ arm64:
   interruptible: false
   variables:
     DOCKER_HUB: "ENABLED"
+    DOCKER_ARGS: >-
+      --cache-from=type=registry,ref=${DOCKER_IMAGE}
     DOCKER_TAGS: >-
       --tag=${DOCKER_IMAGE_HUB_PATH}:arm64
 
@@ -35,5 +39,9 @@ multi:
   variables:
     PLATFORM: "linux/arm64,linux/amd64"
     DOCKER_HUB: "ENABLED"
+    DOCKER_ARGS: >-
+      --cache-from=type=registry,ref=${DOCKER_IMAGE}
+      --cache-from=type=registry,ref=${DOCKER_IMAGE_PATH}:amd64
+      --cache-from=type=registry,ref=${DOCKER_IMAGE_PATH}:arm64
     DOCKER_TAGS: >-
       --tag=${DOCKER_IMAGE_HUB_PATH}:latest
