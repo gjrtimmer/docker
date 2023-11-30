@@ -9,7 +9,9 @@ RUN apk add --no-cache --update \
     curl \
     wget \
     coreutils \
-    tar
+    tar \
+    ca-certificates && \
+    update-ca-certificates
 
 ARG BUILD_DATE
 ARG CI_PROJECT_NAME
