@@ -1,16 +1,13 @@
+# yaml-language-server: $schema=https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json
 default:
-  image: 
+  image:
     name: gjrtimmer/docker:latest
     pull_policy: always
   interruptible: false
 
-stages:
-  - build
-  - multi
-
 include:
   - project: templates/ci
-    file: docker.yml
+    file: default.yml
 
 amd64:
   extends: .docker-build-amd64
@@ -35,7 +32,9 @@ arm64:
 multi:
   extends: .docker-build-multi
   interruptible: false
-  stage: multi
+  needs:
+    - amd64
+    - arm64
   variables:
     PLATFORM: "linux/arm64,linux/amd64"
     DOCKER_HUB: "ENABLED"
