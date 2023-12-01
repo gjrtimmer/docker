@@ -37,8 +37,8 @@ multi:
     PLATFORM: "linux/arm64,linux/amd64"
     DOCKER_HUB: "ENABLED"
     DOCKER_ARGS: >-
-      --cache-from=type=registry,ref=${DOCKER_IMAGE_PATH}:amd64
-      --cache-from=type=registry,ref=${DOCKER_IMAGE_PATH}:arm64
+      --cache-from=type=registry,ref=${DOCKER_IMAGE_CACHE_PATH}:amd64
+      --cache-from=type=registry,ref=${DOCKER_IMAGE_CACHE_PATH}:arm64
     DOCKER_TAGS: >-
       --tag=${DOCKER_IMAGE_HUB_PATH}:latest
     HEALTH_CHECK_UUID: 52f8da66-fe8e-46d7-9dde-6aafd84932d5
