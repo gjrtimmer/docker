@@ -1,10 +1,11 @@
-FROM docker:24.0.2-git
+FROM docker:27.0.1-cli
 
 RUN apk add --no-cache --update \
     build-base \
     bash \
     findutils \
     pcre-tools \
+    git \
     git-lfs \
     curl \
     wget \
@@ -29,7 +30,7 @@ LABEL \
     org.opencontainers.image.source="${CI_PROJECT_URL}.git" \
     org.opencontainers.image.ref.name=${VCS_REF} \
     org.opencontainers.image.revision=${VCS_REF} \
-    org.opencontainers.image.base.name="docker.io/library/docker:24.0.2-git" \
+    org.opencontainers.image.base.name="docker.io/library/docker:27.0.1-git" \
     org.opencontainers.image.licenses=MIT \
     org.opencontainers.image.vendor=timmertech.nl
 
