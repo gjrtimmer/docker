@@ -33,5 +33,3 @@ LABEL \
     org.opencontainers.image.base.name="docker.io/library/docker:27.0.1-git" \
     org.opencontainers.image.licenses=MIT \
     org.opencontainers.image.vendor=timmertech.nl
-
-# EOF
