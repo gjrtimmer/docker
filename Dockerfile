@@ -1,4 +1,4 @@
-FROM docker:27.0.1-cli
+FROM harbor.local/docker.io/docker:27.0.1-cli
 
 RUN apk add --no-cache --update \
     build-base \
