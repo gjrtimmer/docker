@@ -6,7 +6,7 @@ default:
   interruptible: false
 
 include:
-  - component: $CI_SERVER_FQDN/templates/components/docker/amd64@0.9.3
+  - component: $CI_SERVER_FQDN/templates/components/docker/amd64@0.9.4
     inputs:
       interruptible: false
       dockerhub: true
@@ -14,7 +14,7 @@ include:
         --tag=${DOCKER_IMAGE_HUB_PATH}:amd64
       healthcheck-uuid: cd8b11c8-8ec5-45a1-89b1-495c51d6c4aa
 
-  - component: $CI_SERVER_FQDN/templates/components/docker/arm64@0.9.3
+  - component: $CI_SERVER_FQDN/templates/components/docker/arm64@0.9.4
     inputs:
       interruptible: false
       dockerhub: true
@@ -22,7 +22,7 @@ include:
         --tag=${DOCKER_IMAGE_HUB_PATH}:arm64
       healthcheck-uuid: 23310f5b-19c1-47aa-a94b-66722cec170e
 
-  - component: $CI_SERVER_FQDN/templates/components/docker/multi@0.9.3
+  - component: $CI_SERVER_FQDN/templates/components/docker/multi@0.9.4
     inputs:
       interruptible: false
       needs:
