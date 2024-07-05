@@ -6,6 +6,9 @@ default:
   interruptible: false
 
 include:
+  - project: templates/ci
+    file: /deploy/live.yml
+
   - component: $CI_SERVER_FQDN/templates/components/docker/amd64@0.9.4
     inputs:
       interruptible: false
