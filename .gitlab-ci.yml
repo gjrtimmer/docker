@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json
 default:
   image:
-    name: harbor.local/docker.io/docker:27.0.1-cli
+    name: $DOCKER_HUB_PROXY/docker:27.0.1-cli
     pull_policy: always
   interruptible: false
 
