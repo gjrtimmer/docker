@@ -7,7 +7,9 @@ default:
 
 include:
   - project: templates/ci
-    file: /deploy/live.yml
+    file:
+      - /deploy/live.yml
+      - /deploy/dockerhub.yml
 
   - component: $CI_SERVER_FQDN/templates/components/docker/amd64@0.9.5
     inputs:
