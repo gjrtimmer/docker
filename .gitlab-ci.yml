@@ -6,8 +6,8 @@ default:
   interruptible: false
 
 include:
-  - component: $CI_SERVER_FQDN/templates/components/publish/live@0.2.2
-  - component: $CI_SERVER_FQDN/templates/components/publish/hub@0.2.2
+  - component: $CI_SERVER_FQDN/templates/components/publish/live@0.2.3
+  - component: $CI_SERVER_FQDN/templates/components/publish/hub@0.2.3
 
   - component: $CI_SERVER_FQDN/templates/components/docker/amd64@0.9.5
     inputs:
