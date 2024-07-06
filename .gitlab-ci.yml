@@ -9,27 +9,33 @@ include:
   - component: $CI_SERVER_FQDN/templates/components/publish/live@0.3.0
   - component: $CI_SERVER_FQDN/templates/components/publish/hub@0.3.0
 
-  - component: $CI_SERVER_FQDN/templates/components/docker/amd64@0.9.5
+  - component: $CI_SERVER_FQDN/templates/components/docker/amd64@1.0.0
+    rules:
+      - if: $CI_COMMIT_TAG
+        when: never
+      - when: always
     inputs:
       interruptible: false
       args: >-
         --build-context=certs=/builds/docker/docker.tmp
       healthcheck-uuid: cd8b11c8-8ec5-45a1-89b1-495c51d6c4aa
 
-  - component: $CI_SERVER_FQDN/templates/components/docker/arm64@main
+  - component: $CI_SERVER_FQDN/templates/components/docker/arm64@1.0.0
     rules:
       - if: $CI_COMMIT_TAG
         when: never
+      - when: always
     inputs:
       interruptible: false
       args: >-
         --build-context=certs=/builds/docker/docker.tmp
       healthcheck-uuid: 23310f5b-19c1-47aa-a94b-66722cec170e
 
-  - component: $CI_SERVER_FQDN/templates/components/docker/multi@main
+  - component: $CI_SERVER_FQDN/templates/components/docker/multi@1.0.0
     rules:
       - if: $CI_COMMIT_TAG
         when: never
+      - when: always
     inputs:
       interruptible: false
       needs:
@@ -41,7 +47,7 @@ include:
         --build-context=certs=/builds/docker/docker.tmp
       healthcheck-uuid: 52f8da66-fe8e-46d7-9dde-6aafd84932d5
 
-  - component: $CI_SERVER_FQDN/templates/components/docker/multi@main
+  - component: $CI_SERVER_FQDN/templates/components/docker/multi@1.0.0
     rules:
       - if: $CI_COMMIT_TAG
     inputs:
