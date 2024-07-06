@@ -4,7 +4,7 @@ ARG LOCAL_CA
 ARG LOCAL_INTERMEDIATE_CA
 ARG HARBOR_CERT
 
-COPY --from=certs ${LOCAL_CA} /usr/local/share/ca-certificates/Local_Root_CA.crt
+COPY --from=certs LOCAL_ROOT_CA /usr/local/share/ca-certificates/Local_Root_CA.crt
 COPY --from=certs ${LOCAL_INTERMEDIATE_CA} /usr/local/share/ca-certificates/Local_Turing_PI_CA.crt
 COPY --from=certs ${HARBOR_CERT} /usr/local/share/ca-certificates/harbor.local.crt
 
