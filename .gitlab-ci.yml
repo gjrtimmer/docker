@@ -14,6 +14,7 @@ include:
       interruptible: false
       dockerhub: true
       args: >-
+        --build-context=certs=/builds/docker/docker.tmp
         --build-arg=LOCAL_CA=${LOCAL_ROOT_CA}
         --build-arg=LOCAL_INTERMEDIATE_CA=${LOCAL_TURING_PI_CA}
         --build-arg=HARBOR_CERT=${HARBOR_CERT}
@@ -26,6 +27,7 @@ include:
       interruptible: false
       dockerhub: true
       args: >-
+        --build-context=certs=/builds/docker/docker.tmp
         --build-arg=LOCAL_CA=${LOCAL_ROOT_CA}
         --build-arg=LOCAL_INTERMEDIATE_CA=${LOCAL_TURING_PI_CA}
         --build-arg=HARBOR_CERT=${HARBOR_CERT}
@@ -43,6 +45,7 @@ include:
       args: >-
         --cache-from=type=registry,ref=${DOCKER_IMAGE_CACHE_PATH}:amd64
         --cache-from=type=registry,ref=${DOCKER_IMAGE_CACHE_PATH}:arm64
+        --build-context=certs=/builds/docker/docker.tmp
         --build-arg=LOCAL_CA=${LOCAL_ROOT_CA}
         --build-arg=LOCAL_INTERMEDIATE_CA=${LOCAL_TURING_PI_CA}
         --build-arg=HARBOR_CERT=${HARBOR_CERT}
