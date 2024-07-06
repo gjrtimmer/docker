@@ -12,27 +12,21 @@ include:
   - component: $CI_SERVER_FQDN/templates/components/docker/amd64@0.9.5
     inputs:
       interruptible: false
-      dockerhub: true
       args: >-
         --build-context=certs=/builds/docker/docker.tmp
         --build-arg=LOCAL_CA=${LOCAL_ROOT_CA}
         --build-arg=LOCAL_INTERMEDIATE_CA=${LOCAL_TURING_PI_CA}
         --build-arg=HARBOR_CERT=${HARBOR_CERT}
-      tags: >-
-        --tag=${DOCKER_IMAGE_HUB_PATH}:amd64
       healthcheck-uuid: cd8b11c8-8ec5-45a1-89b1-495c51d6c4aa
 
   - component: $CI_SERVER_FQDN/templates/components/docker/arm64@0.9.5
     inputs:
       interruptible: false
-      dockerhub: true
       args: >-
         --build-context=certs=/builds/docker/docker.tmp
         --build-arg=LOCAL_CA=${LOCAL_ROOT_CA}
         --build-arg=LOCAL_TURING_PI_CA=${LOCAL_TURING_PI_CA}
         --build-arg=HARBOR_CERT=${HARBOR_CERT}
-      tags: >-
-        --tag=${DOCKER_IMAGE_HUB_PATH}:arm64
       healthcheck-uuid: 23310f5b-19c1-47aa-a94b-66722cec170e
 
   - component: $CI_SERVER_FQDN/templates/components/docker/multi@0.9.5
@@ -41,7 +35,6 @@ include:
       needs:
         - docker:amd64
         - docker:arm64
-      dockerhub: true
       args: >-
         --cache-from=type=registry,ref=${DOCKER_IMAGE_CACHE_PATH}:amd64
         --cache-from=type=registry,ref=${DOCKER_IMAGE_CACHE_PATH}:arm64
@@ -49,7 +42,4 @@ include:
         --build-arg=LOCAL_CA=${LOCAL_ROOT_CA}
         --build-arg=LOCAL_INTERMEDIATE_CA=${LOCAL_TURING_PI_CA}
         --build-arg=HARBOR_CERT=${HARBOR_CERT}
-      tags: >-
-        --tag=${DOCKER_IMAGE_PATH}:latest
-        --tag=${DOCKER_IMAGE_HUB_PATH}:latest
       healthcheck-uuid: 52f8da66-fe8e-46d7-9dde-6aafd84932d5
