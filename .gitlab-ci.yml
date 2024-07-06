@@ -13,6 +13,10 @@ include:
     inputs:
       interruptible: false
       dockerhub: true
+      args: >-
+        --build-arg=LOCAL_CA=${LOCAL_ROOT_CA}
+        --build-arg=LOCAL_INTERMEDIATE_CA=${LOCAL_TURING_PI_CA}
+        --build-arg=HARBOR_CERT=${HARBOR_CERT}
       tags: >-
         --tag=${DOCKER_IMAGE_HUB_PATH}:amd64
       healthcheck-uuid: cd8b11c8-8ec5-45a1-89b1-495c51d6c4aa
@@ -21,6 +25,10 @@ include:
     inputs:
       interruptible: false
       dockerhub: true
+      args: >-
+        --build-arg=LOCAL_CA=${LOCAL_ROOT_CA}
+        --build-arg=LOCAL_INTERMEDIATE_CA=${LOCAL_TURING_PI_CA}
+        --build-arg=HARBOR_CERT=${HARBOR_CERT}
       tags: >-
         --tag=${DOCKER_IMAGE_HUB_PATH}:arm64
       healthcheck-uuid: 23310f5b-19c1-47aa-a94b-66722cec170e
@@ -35,6 +43,9 @@ include:
       args: >-
         --cache-from=type=registry,ref=${DOCKER_IMAGE_CACHE_PATH}:amd64
         --cache-from=type=registry,ref=${DOCKER_IMAGE_CACHE_PATH}:arm64
+        --build-arg=LOCAL_CA=${LOCAL_ROOT_CA}
+        --build-arg=LOCAL_INTERMEDIATE_CA=${LOCAL_TURING_PI_CA}
+        --build-arg=HARBOR_CERT=${HARBOR_CERT}
       tags: >-
         --tag=${DOCKER_IMAGE_PATH}:latest
         --tag=${DOCKER_IMAGE_HUB_PATH}:latest

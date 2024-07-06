@@ -1,5 +1,13 @@
 FROM harbor.local/docker.io/docker:27.0.1-cli
 
+ARG LOCAL_CA
+ARG LOCAL_INTERMEDIATE_CA
+ARG HARBOR_CERT
+
+COPY ${LOCAL_CA} /usr/local/share/ca-certificates/Local_Root_CA.crt
+COPY ${LOCAL_INTERMEDIATE_CA} /usr/local/share/ca-certificates/Local_Turing_PI_CA.crt
+COPY ${HARBOR_CERT} /usr/local/share/ca-certificates/harbor.local.crt
+
 RUN apk add --no-cache --update \
     build-base \
     bash \
