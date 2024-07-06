@@ -29,7 +29,7 @@ include:
       args: >-
         --build-context=certs=/builds/docker/docker.tmp
         --build-arg=LOCAL_CA=${LOCAL_ROOT_CA}
-        --build-arg=LOCAL_INTERMEDIATE_CA=${LOCAL_TURING_PI_CA}
+        --build-arg=LOCAL_TURING_PI_CA=${LOCAL_TURING_PI_CA}
         --build-arg=HARBOR_CERT=${HARBOR_CERT}
       tags: >-
         --tag=${DOCKER_IMAGE_HUB_PATH}:arm64
