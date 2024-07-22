@@ -6,7 +6,7 @@ default:
   interruptible: false
 
 include:
-  - component: $CI_SERVER_FQDN/templates/components/workflow/default@0.1.2
+  - component: $CI_SERVER_FQDN/templates/components/workflow/default@0.2.0
   - component: $CI_SERVER_FQDN/templates/components/renovate/renovate@0.6.0
   - component: $CI_SERVER_FQDN/templates/components/publish/live@0.5.1
   - component: $CI_SERVER_FQDN/templates/components/publish/hub@0.5.1
