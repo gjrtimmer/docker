@@ -6,11 +6,11 @@ default:
   interruptible: false
 
 include:
-  - component: $CI_SERVER_FQDN/templates/components/workflow/default@0.2.1
+  - component: $CI_SERVER_FQDN/templates/components/workflow/default@0.3.1
   - component: $CI_SERVER_FQDN/templates/components/publish/live@0.5.1
   - component: $CI_SERVER_FQDN/templates/components/publish/hub@0.5.1
 
-  - component: $CI_SERVER_FQDN/templates/components/docker/amd64@1.3.4
+  - component: $CI_SERVER_FQDN/templates/components/docker/amd64@1.3.5
     rules:
       - if: $CI_COMMIT_TAG
         when: never
@@ -21,7 +21,7 @@ include:
         --build-context=gitlab=/builds/$CI_PROJECT_PATH.tmp
       healthcheck-uuid: cd8b11c8-8ec5-45a1-89b1-495c51d6c4aa
 
-  - component: $CI_SERVER_FQDN/templates/components/docker/arm64@1.3.4
+  - component: $CI_SERVER_FQDN/templates/components/docker/arm64@1.3.5
     rules:
       - if: $CI_COMMIT_TAG
         when: never
@@ -32,7 +32,7 @@ include:
         --build-context=gitlab=/builds/$CI_PROJECT_PATH.tmp
       healthcheck-uuid: 23310f5b-19c1-47aa-a94b-66722cec170e
 
-  - component: $CI_SERVER_FQDN/templates/components/docker/multi@1.3.4
+  - component: $CI_SERVER_FQDN/templates/components/docker/multi@1.3.5
     rules:
       - if: $CI_COMMIT_TAG
         when: never
@@ -48,7 +48,7 @@ include:
         --build-context=gitlab=/builds/$CI_PROJECT_PATH.tmp
       healthcheck-uuid: 52f8da66-fe8e-46d7-9dde-6aafd84932d5
 
-  - component: $CI_SERVER_FQDN/templates/components/docker/multi@1.3.4
+  - component: $CI_SERVER_FQDN/templates/components/docker/multi@1.3.5
     rules:
       - if: $CI_COMMIT_TAG
     inputs:
