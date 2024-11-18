@@ -17,7 +17,7 @@ RUN apk add --no-cache --update \
 
 COPY --from=gitlab LOCAL_ROOT_CA /usr/local/share/ca-certificates/Local_Root_CA.crt
 COPY --from=gitlab LOCAL_TURING_PI_CA /usr/local/share/ca-certificates/Local_Turing_PI_CA.crt
-COPY --from=gitlab LOCAL_TURING_PI_CA /usr/local/share/ca-certificates/Local_Turing_PI_CA.crt
+COPY --from=gitlab LOCAL_OID_CA /usr/local/share/ca-certificates/Local_OID_CA.crt
 COPY --from=gitlab LOCAL_TURING_PI_CA /etc/docker/certs.d/harbor.local/ca.crt
 
 RUN update-ca-certificates
