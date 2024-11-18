@@ -20,7 +20,11 @@ COPY --from=gitlab LOCAL_TURING_PI_CA /usr/local/share/ca-certificates/Local_Tur
 COPY --from=gitlab LOCAL_OID_CA /usr/local/share/ca-certificates/Local_OID_CA.crt
 COPY --from=gitlab LOCAL_TURING_PI_CA /etc/docker/certs.d/harbor.local/ca.crt
 
-RUN update-ca-certificates
+ARG TARGETARCH
+ADD https://dl.min.io/client/mc/release/linux-${TARGETARCH}/mc /usr/bin/mc
+
+RUN update-ca-certificates && \
+    chmod +x /usr/bin/mc
 
 ARG BUILD_DATE
 ARG CI_PROJECT_NAME
