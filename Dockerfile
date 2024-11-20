@@ -13,7 +13,10 @@ RUN apk add --no-cache --update \
     wget \
     coreutils \
     tar \
-    ca-certificates
+    ca-certificates \
+    zip \
+    unzip \
+    sed
 
 COPY --from=gitlab LOCAL_ROOT_CA /usr/local/share/ca-certificates/Local_Root_CA.crt
 COPY --from=gitlab LOCAL_TURING_PI_CA /usr/local/share/ca-certificates/Local_Turing_PI_CA.crt
