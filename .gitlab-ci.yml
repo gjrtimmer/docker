@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json
 default:
   image:
-    name: $DOCKER_HUB_PROXY/docker:27.3.1-cli
+    name: $DOCKER_HUB_PROXY/docker:28.2.2-cli
     pull_policy: always
   interruptible: false
 
@@ -10,8 +10,8 @@ variables:
 
 include:
   - component: $CI_SERVER_FQDN/templates/components/workflow/default@0.4.0
-  - component: $CI_SERVER_FQDN/templates/components/publish/live@0.7.0
-  - component: $CI_SERVER_FQDN/templates/components/publish/hub@0.7.0
+  - component: $CI_SERVER_FQDN/templates/components/publish/live@0.8.0
+  - component: $CI_SERVER_FQDN/templates/components/publish/hub@0.8.0
   - component: $CI_SERVER_FQDN/templates/components/renovate/renovate@0.9.0
   - component: $CI_SERVER_FQDN/templates/components/docker/multi@1.9.0
     rules:
