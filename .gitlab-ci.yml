@@ -22,6 +22,7 @@ include:
       interruptible: false
       args: >-
         --build-context=gitlab=/builds/$CI_PROJECT_PATH.tmp
+        --buildkitd-flags=--allow-insecure-entitlement exec.insecure
   - component: $CI_SERVER_FQDN/templates/components/docker/multi@1.9.0
     rules:
       - if: $CI_COMMIT_TAG
@@ -31,6 +32,7 @@ include:
       cache: false
       args: >-
         --build-context=gitlab=/builds/$CI_PROJECT_PATH.tmp
+        --buildkitd-flags=--allow-insecure-entitlement exec.insecure
       tag: $HARBOR_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_TAG
       tags: >-
         --tag=$HARBOR_REGISTRY_LIVE/$CI_PROJECT_PATH:$CI_COMMIT_TAG
