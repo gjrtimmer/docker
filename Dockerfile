@@ -1,5 +1,6 @@
-# hadolint global ignore=DL3022
-FROM harbor.local/docker.io/docker:28.2.2-cli
+ARG TARGETARCH
+# hadolint global ignore=DL3022,DL3029
+FROM --platform=linux/${TARGETARCH} harbor.local/docker.io/docker:28.2.2-cli
 
 # hadolint ignore=DL3018
 RUN apk add --no-cache --update \
